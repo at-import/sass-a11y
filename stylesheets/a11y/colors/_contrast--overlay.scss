@@ -1,0 +1,38 @@
+//////////////////////////////
+// Overlay colors
+//////////////////////////////
+@function a11y-ContrastOverlayOn($foreground, $background) {
+  $overlaid: $foreground;
+
+  $alpha: alpha($foreground);
+  $bAlpha: alpha($background);
+
+  @if $alpha >= 1 {
+    @return $overlaid;
+  }
+
+  $Colors: (
+    'red': red($foreground),
+    'green': green($foreground),
+    'blue': blue($foreground)
+  );
+
+  @each $color in map-keys($Colors) {
+    $fVal: call($color, $overlaid) * $alpha;
+    $bVal: call($color, $background);
+
+    $bVal: $bVal * $bAlpha * (1 - $alpha);
+
+    $cVal: $fVal + $bVal;
+
+    $Colors: map-merge($Colors, ($color: $cVal));
+  }
+
+  // @debug alpha($color);
+
+  $cAlpha: $alpha + alpha($background) * (1 - $alpha);
+
+  $Colors: map-merge($Colors,  ('alpha': $cAlpha));
+
+  @return rgba(map-get($Colors, 'red'), map-get($Colors, 'green'), map-get($Colors, 'blue'), map-get($Colors, 'alpha'));
+}

@@ -1,0 +1,67 @@
+@import "contrast--settings";
+@import "luminance";
+@import "contrast--overlay";
+@import "contrast--closest";
+@import "contrast--find";
+@import "contrast--output";
+
+@function a11y-contrast($color, $background) {
+  $semi: false;
+  $results: ();
+  $return: true;
+
+  @if $A11Y--Contrast-Output-Warnings {
+    @debug 'Accessibility results for `' + $color + '` text on `' + $background + '` background';
+  }
+
+
+
+  @if apha($background) {
+    @if $A11Y--Contrast-Output-Warnings {
+      @warn map-get($A11Y--Contrast-Sizes, 'semitransparent');
+    }
+
+    $semi: true;
+  }
+
+  $contrast: a11y-ContrastFind($color, $background);
+
+
+  $results: a11y-ContrastOutput(map-get($contrast, 'ratio'));
+  @if $semi {
+    $min-output: a11y-ContrastOutput(map-get($contrast, 'min'));
+    $max-output: a11y-ContrastOutput(map-get($contrast, 'max'));
+    $holder: ();
+
+
+    $holder: append($holder, $min-output);
+
+    @if $results != $min-output {
+      $holder: append($holder, $results);
+    }
+
+    @if $max-output != $min-output and $max-output != results {
+      $holder: append($holder, $max-output);
+    }
+
+    $results: $holder;
+  }
+
+  @each $level in $results {
+    @if $level == 'fail' {
+      @if $A11Y--Contrast-Output-Warnings {
+        @error map-get($A11Y--Contrast-Sizes, $level);
+        $return: false;
+      }
+
+    }
+    @else {
+      @if $A11Y--Contrast-Output-Warnings {
+        @debug map-get($A11Y--Contrast-Sizes, $level);
+      }
+
+    }
+  }
+
+  @return $return;
+}

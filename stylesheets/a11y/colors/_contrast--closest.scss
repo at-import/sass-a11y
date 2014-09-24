@@ -1,0 +1,26 @@
+//////////////////////////////
+// Closest, used for contrast in alpha
+//////////////////////////////
+@function a11y-ContrastClosest($color, $background, $alpha: 1) {
+  $fColors: (
+    'red': red($background),
+    'green': green($background),
+    'blue': blue($background)
+  );
+
+  $bColors : (
+    'red': red($color),
+    'green': green($color),
+    'blue': blue($color)
+  );
+
+  $return: ();
+
+  @each $color, $value in $fColors {
+    $val: max(0, (map-get($bColors, $color) - ($value * $alpha)) / (1 - $alpha));
+    $val: min($val, 255);
+    $return: map-merge($return, ($color: $val));
+  }
+
+  @return rgb(map-get($return, 'red'), map-get($return, 'green'), map-get($return, 'blue'));
+}

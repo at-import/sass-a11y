@@ -1,0 +1,22 @@
+$A11Y--Contrast-Sizes: (
+  'semitransparent': 'The background is semi-transparent, so the contrast ratio cannot be precise. Depending on what’s going to be underneath, it could be any of the following:',
+  'fail': 'Fails WCAG 2.0 :-(',
+  'aa-large': 'Passes AA for large text (above 18pt or bold above 14pt)',
+  'aa': 'Passes AA level for any size text and AAA for large text (above 18pt or bold above 14pt)',
+  'aaa': 'Passes AAA level for any size text'
+);
+
+$A11Y--Contrast-Output-Warnings: true !default;
+
+$A11Y--Contrast-Levels: (
+  'fail': 0 3,
+  'aa-large': 3 4.5,
+  'aa': 4.5 7,
+  'aaa': 7 22
+);
+
+$A11Y--Contrast-Colors: (
+  'black': rgb(0, 0, 0),
+  'gray': rgb(127.5, 127.5, 127.5),
+  'white': rgb(255, 255, 255)
+);

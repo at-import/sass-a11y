@@ -1,0 +1,60 @@
+@import "contrast--settings";
+
+//////////////////////////////
+// Contrast Find
+//////////////////////////////
+@function a11y-ContrastFind($color, $background) {
+  $alpha: alpha($background);
+
+  @if $alpha >= 1 {
+    @if alpha($color) < 1 {
+      $color: a11y-ContrastOverlayOn($color, $background);
+    }
+
+    $l1: a11y-luminance($background) + .05;
+    $l2: a11y-luminance($color) + .05;
+
+    $ratio: $l1 / $l2;
+
+    @if ($l2 > $l1) {
+      $ratio: 1 / $ratio;
+    }
+
+    @return (
+      'ratio': $ratio,
+      'error': 0,
+      'min': $ratio,
+      'max': $ratio
+    );
+  }
+  // If we’re here, it means we have a semi-transparent background
+  // The text color may or may not be semi-transparent, but that doesn't matter
+  $onBlack: a11y-ContrastOverlayOn($background, map-get($A11Y--Contrast-Colors, 'black'));
+  $onBlack: a11y-ContrastFind($onBlack, $color);
+  $onBlack: map-get($onBlack, 'ratio');
+
+  $onWhite: a11y-ContrastOverlayOn($background, map-get($A11Y--Contrast-Colors, 'white'));
+  $onWhite: a11y-ContrastFind($onWhite, $color);
+  $onWhite: map-get($onWhite, 'ratio');
+
+  $max: max($onBlack, $onWhite);
+
+  $closest: a11y-ContrastClosest($color, $background, $alpha);
+
+  $min: a11y-ContrastOverlayOn($background, $closest);
+  $min: a11y-ContrastFind($color, $min);
+  $min-ratio: map-get($min, 'ratio');
+
+  $far: map-get($A11Y--Contrast-Colors, 'black');
+  @if $onWhite == $max {
+    $far: map-get($A11Y--Contrast-Colors, 'white');
+  }
+
+  @return (
+    'ratio': ($max + $min-ratio) / 2,
+    'error': ($max - $min-ratio) / 2,
+    'min': $min-ratio,
+    'max': $max,
+    'farthest': $far
+  );
+}

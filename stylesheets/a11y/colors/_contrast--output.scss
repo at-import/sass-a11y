@@ -1,0 +1,9 @@
+@import "contrast--settings";
+
+@function a11y-ContrastOutput($number) {
+  @each $level, $range in $A11Y--Contrast-Levels {
+    @if $number >= nth($range, 1) and $number < nth($range, 2) {
+      @return $level;
+    }
+  }
+}
