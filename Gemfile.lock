@@ -31,8 +31,8 @@ PLATFORMS
 
 DEPENDENCIES
   colorize (~> 0.6.0)
-  compass (~> 1.0.0.rc.1)
+  compass (~> 1.0.0)
   diffy (~> 3.0.1)
   rake
-  sass (~> 3.4.0.rc.1)
+  sass (~> 3.4.0)
   sassy-math (~> 1.5.1)
