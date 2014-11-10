@@ -1,0 +1,15 @@
+// Hide parts of the page visually. Screenreaders will read the information.
+// ---------
+// As placeholders and mixins produce different code,
+// it is up to you to choose the correct "weapon".
+// ---------
+// http://webaim.org/techniques/css/invisiblecontent/#absolutepositioning
+@mixin hideme {
+	position: absolute;
+	clip: rect(1px, 1px, 1px, 1px);
+}
+
+%hideme {
+	position: absolute;
+	clip: rect(1px, 1px, 1px, 1px);
+}
