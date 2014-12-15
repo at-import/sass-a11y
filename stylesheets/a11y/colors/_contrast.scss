@@ -11,7 +11,7 @@
   $return: true;
 
   @if $A11Y--Contrast-Output-Warnings {
-    @debug 'Accessibility results for `' + $color + '` text on `' + $background + '` background';
+    @debug 'Accessibility results for "' + $color + '" text on "' + $background + '" background';
   }
 
 

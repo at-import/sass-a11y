@@ -27,7 +27,7 @@
       'max': $ratio
     );
   }
-  // If we’re here, it means we have a semi-transparent background
+  // If we're here, it means we have a semi-transparent background
   // The text color may or may not be semi-transparent, but that doesn't matter
   $onBlack: a11y-ContrastOverlayOn($background, map-get($A11Y--Contrast-Colors, 'black'));
   $onBlack: a11y-ContrastFind($onBlack, $color);
