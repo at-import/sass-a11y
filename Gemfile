@@ -3,7 +3,6 @@ source 'https://rubygems.org'
 
 gem 'sass', '~>3.4.0'
 gem 'compass', '~>1.0.0'
-gem 'sassy-math', '~> 1.5.1'
 
 group :test do
   gem 'rake'
