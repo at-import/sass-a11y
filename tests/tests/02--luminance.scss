@@ -1,0 +1,25 @@
+@import "a11y";
+
+$color: #000;
+
+.colors {
+  @for $i from 0 through 17 {
+    $i: $i * 15;
+    $color: rgb($i, green($color), blue($color));
+    $prop: '_luminance--#{$color}';
+    #{$prop}: a11y-luminance($color);
+    @for $j from 0 through 17 {
+      $j: $j * 15;
+      $color: rgb($i, $j, blue($color));
+      $prop: '_luminance--#{$color}';
+      #{$prop}: a11y-luminance($color);
+      @for $k from 0 through 17 {
+        $k: $k * 15;
+        $color: rgb($i, $j, $k);
+        $prop: '_luminance--#{$color}';
+        #{$prop}: a11y-luminance($color);
+        // @debug 'rgb(#{$i}, #{$j}, #{$k})';
+      }
+    }
+  }
+}

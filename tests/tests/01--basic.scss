@@ -1,0 +1,52 @@
+// @import "a11y";
+
+// $A11Y--Contrast-Output-Warnings: false;
+
+// $color: #000;
+// $counter: 8;
+// $amount: 30;
+
+// $foreground: ();
+// $background: ();
+
+// @for $i from 0 through $counter {
+//   $i: $i * $amount;
+//   $color: rgb($i, green($color), blue($color));
+//   $foreground: append($foreground, $color);
+//   @for $j from 0 through $counter {
+//     $j: $j * $amount;
+//     $color: rgb($i, $j, blue($color));
+//     $foreground: append($foreground, $color);
+//     @for $k from 0 through $counter {
+//       $k: $k * $amount;
+//       $color: rgb($i, $j, $k);
+//       $foreground: append($foreground, $color);
+//     }
+//   }
+// }
+
+// // Reverse the Lists
+// @for $i from length($foreground) to 0 {
+//   $background: append($background, nth($foreground, $i));
+// }
+
+// .colors {
+//   @for $i from 1 through length($foreground) {
+//     $top: nth($foreground, $i);
+//     $bottom: nth($background, $i);
+
+//     $prop: '_contrast--#{$top}-#{$bottom}';
+//     #{$prop}: a11y-contrast($top, $bottom);
+
+//     $prop: '_contrast--#{$top}Alpha3-#{$bottom}';
+//     #{$prop}: a11y-contrast(rgba($top, .3), $bottom);
+
+//     $prop: '_contrast--#{$top}-#{$bottom}Alpha5';
+//     #{$prop}: a11y-contrast($top, rgba($bottom, .5));
+
+//     $prop: '_contrast--#{$top}Alpha2-#{$bottom}Alpha7';
+//     #{$prop}: a11y-contrast(rgba($top, .2), rgba($bottom, .7));
+
+//     @debug '#{$top} on #{$bottom}';
+//   }
+// }
