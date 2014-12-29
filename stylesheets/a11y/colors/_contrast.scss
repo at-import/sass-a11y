@@ -16,7 +16,7 @@
 
 
 
-  @if apha($background) {
+  @if alpha($background) != 1 {
     @if $A11Y--Contrast-Output-Warnings {
       @warn map-get($A11Y--Contrast-Sizes, 'semitransparent');
     }
