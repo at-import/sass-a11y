@@ -1,4 +1,4 @@
-# Sass A11Y
+# Sass A11Y [![Build Status](https://travis-ci.org/at-import/sass-a11y.svg)](https://travis-ci.org/at-import/sass-a11y)
 Accessibility helpers for Sass.
 
 While working in Sass, it's useful to check to ensure your decisions are accessible ones. This Compass plugin (for the time being, until Sass gets an exponent function) will assist you in ensuring your designs are accessible as much as it can without having your whole site rendered.
