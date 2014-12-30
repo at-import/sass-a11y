@@ -51,15 +51,13 @@
     @if $level == 'fail' {
       @if $A11Y--Contrast-Output-Warnings {
         @error map-get($A11Y--Contrast-Sizes, $level);
-        $return: false;
       }
-
+      $return: false;
     }
     @else {
       @if $A11Y--Contrast-Output-Warnings {
         @debug map-get($A11Y--Contrast-Sizes, $level);
       }
-
     }
   }
 
